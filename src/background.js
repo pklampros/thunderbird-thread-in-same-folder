@@ -27,11 +27,12 @@ async function load() {
                     inReplyTo = inReplyTo.substring(0, inReplyTo.length - 1)
                 }
                 let queryResult = await messenger.messages.query({"headerMessageId" : inReplyTo})
-                if (queryResult.messages.length > 0) {
-                    let parent = queryResult.messages[0]
-		    if (parent['folder'] != message['folder']) {
-		        messenger.messages.move([message.id], parent['folder'])
-		    }
+                for(let parent of queryResult.messages){
+                    let specialFolders = ['sent', 'drafts', 'trash', 'templates', 'archives', 'junk', 'outbox'];
+                    if(!specialFolders.includes(parent['folder']['type']) && parent['folder'] != message['folder']){
+                        messenger.messages.move([message.id], parent['folder'])
+                        break;
+                    }
                 }
             }
         }
