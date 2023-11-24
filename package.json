@@ -1,0 +1,10 @@
+{
+  "name": "thunderbird-thread-in-same-folder",
+  "version": "1.0.0",
+  "main": "src/background.js",
+  "repository": "git@github.com:pklampros/thunderbird-thread-in-same-folder.git",
+  "license": "GPLv3",
+  "devDependencies": {
+    "thunderbird-web-ext-types": "^1.0.0"
+  }
+}
