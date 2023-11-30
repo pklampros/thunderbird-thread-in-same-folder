@@ -5,6 +5,6 @@
   "repository": "git@github.com:pklampros/thunderbird-thread-in-same-folder.git",
   "license": "GPLv3",
   "devDependencies": {
-    "thunderbird-web-ext-types": "^1.0.0"
+    "@types/thunderbird-webext-browser": "^109.0.4"
   }
 }

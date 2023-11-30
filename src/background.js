@@ -29,10 +29,12 @@ function normalizeMessageId(messageId){
 }
 
 
-const specialFolders = ['sent', 'drafts', 'trash', 'templates', 'archives', 'junk', 'outbox'];
-
 async function load() {
     await messenger.messages.onNewMailReceived.addListener(async (folder, messages) => {
+        let res = await browser.storage.sync.get('ignoreFolderTypes');
+        /** @type {IgnoreFolderTypes} */
+        let ignoreFolderTypes = res.ignoreFolderTypes ?? {};
+        
         for await (let message of iterateMessagePages(messages)) {
             let full = await messenger.messages.getFull(message.id);
             /** @type {string[]} */
@@ -44,7 +46,7 @@ async function load() {
                 messageId = normalizeMessageId(messageId);
                 let queryResult = await messenger.messages.query({"headerMessageId" : messageId})
                 for (let referenceMessage of queryResult.messages) {
-                    if(!specialFolders.includes(referenceMessage.folder.type) && referenceMessage.folder != message.folder){
+                    if(ignoreFolderTypes[referenceMessage.folder.type]===false && referenceMessage.folder != message.folder){
                         messenger.messages.move([message.id], referenceMessage.folder)
                         break referencesLoop;
                     }

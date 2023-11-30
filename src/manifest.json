@@ -20,10 +20,14 @@
         "background.js"
       ]
     },
+    "options_ui": {
+      "page": "options.html"
+    },
     "permissions": [
         "messagesRead",
         "accountsRead",
-        "messagesMove"
+        "messagesMove",
+        "storage"
     ],
     "manifest_version": 2
 }
