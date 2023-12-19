@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+      "outDir": "out",
+      "target": "ES2020",
+      "lib": ["ES2020", "DOM"],
+      "downlevelIteration": false,
+      "allowJs": true,
+      "checkJs": true,
+      //"typeRoots": ["node_modules/@types"],
+    }
+}

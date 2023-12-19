@@ -6,7 +6,7 @@
     "applications": {
         "gecko": {
             "id": "threadInSameFolder@pklampros.io",
-            "strict_min_version": "78.0"
+            "strict_min_version": "85.0"
         }
     },
     "icons": {
@@ -20,10 +20,14 @@
         "background.js"
       ]
     },
+    "options_ui": {
+      "page": "options.html"
+    },
     "permissions": [
         "messagesRead",
         "accountsRead",
-        "messagesMove"
+        "messagesMove",
+        "storage"
     ],
     "manifest_version": 2
 }
